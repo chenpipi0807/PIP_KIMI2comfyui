@@ -59,7 +59,7 @@ class PIPKimi:
         }
         
         try:
-            response = req.post(api_url, headers=headers, json=data, timeout=40)
+            response = req.post(api_url, headers=headers, json=data, timeout=120)
             response.raise_for_status()
             response_data = response.json()
             response_text = response_data['choices'][0]['message']['content']
