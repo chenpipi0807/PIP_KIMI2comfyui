@@ -1,0 +1,9 @@
+# Utils
+requests==2.31.0
+json
+logging
+os
+
+# Code Quality
+flake8==6.1.0
+black==23.7.0

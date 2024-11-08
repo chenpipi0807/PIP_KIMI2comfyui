@@ -1,0 +1,292 @@
+{
+  "last_node_id": 19,
+  "last_link_id": 21,
+  "nodes": [
+    {
+      "id": 18,
+      "type": "String Literal",
+      "pos": {
+        "0": -1187,
+        "1": 221
+      },
+      "size": [
+        399.99006494258117,
+        161.47792680682704
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            16
+          ],
+          "label": "STRING"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "String Literal"
+      },
+      "widgets_values": [
+        "一个美女站在作业帮楼下抽烟"
+      ]
+    },
+    {
+      "id": 17,
+      "type": "PIP_KIMI",
+      "pos": {
+        "0": -690,
+        "1": 215
+      },
+      "size": [
+        381.57677881210714,
+        428.86272058698273
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "additional_input",
+          "type": "STRING",
+          "link": 16,
+          "widget": {
+            "name": "additional_input"
+          },
+          "shape": 7
+        }
+      ],
+      "outputs": [
+        {
+          "name": "response",
+          "type": "STRING",
+          "links": [
+            21
+          ],
+          "label": "response",
+          "slot_index": 0
+        },
+        {
+          "name": "response_show",
+          "type": "STRING",
+          "links": [
+            19
+          ],
+          "label": "response_show",
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PIP_KIMI"
+      },
+      "widgets_values": [
+        "你现在充当stable diffsion 提示词专家，根据我输入的{prompt}，生成提示词，由stable diffsion根据你的提示词生成画面。stable diffusion是文本到图像的扩散模型。你的任务是在各种情况下产生适当的提示，引导人工智能创造出所需的图像。\n'''\n我对于prompt优化的具体要求如下：\n提示词结构需要按照“主体+主体在做什么+背景”优化并且输出。\n需要遵从原版的prompt来优化我提供的提示词不能改变原本提示词中的主要语义。\n同时我需要在此基础上增加细节的描述，增加细节的主要从美学维度出发，比如更好的画面表现力（构图，色调，光影，氛围，细节丰富度，画面故事感），更高级的色彩语言（整体调性，光影氛围，情感传递），更丰富的背景（通过背景元素，画面色彩、氛围光线等能辅助角色情绪的表达，通过背景元素，画面色彩、氛围光线等能辅助角色的性格特征）。\n\n另外需要注意：\n优化过后的prompt需要尽量避免包含风格和艺术家的描述只需要输入仅含有英文prompt的内容；\n同时需要注意的是优化后的prompt不应该超过120个token；\n你输出的内容应该只有优化之后的prompt，请不要包含其他的无关内容！\n'''\n需要优化的prompt如下：",
+        "",
+        ""
+      ]
+    },
+    {
+      "id": 19,
+      "type": "PIP_KIMI",
+      "pos": {
+        "0": -685,
+        "1": 715
+      },
+      "size": [
+        389.60982219587333,
+        273.35175821411815
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "additional_input",
+          "type": "STRING",
+          "link": 20,
+          "widget": {
+            "name": "additional_input"
+          },
+          "shape": 7
+        },
+        {
+          "name": "history_dialogue",
+          "type": "STRING",
+          "link": 21,
+          "widget": {
+            "name": "history_dialogue"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "response",
+          "type": "STRING",
+          "links": null,
+          "label": "response"
+        },
+        {
+          "name": "response_show",
+          "type": "STRING",
+          "links": [
+            18
+          ],
+          "label": "response_show",
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PIP_KIMI"
+      },
+      "widgets_values": [
+        "翻译成中文：",
+        "",
+        ""
+      ]
+    },
+    {
+      "id": 11,
+      "type": "ShowText|pysssss",
+      "pos": {
+        "0": -204,
+        "1": 240
+      },
+      "size": {
+        "0": 407.8007507324219,
+        "1": 281.5359802246094
+      },
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "link": 19,
+          "widget": {
+            "name": "text"
+          },
+          "label": "文本"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            20
+          ],
+          "shape": 6,
+          "label": "字符串",
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ShowText|pysssss"
+      },
+      "widgets_values": [
+        "",
+        "A stylish woman leisurely smoking a cigarette under the bright neon lights of the Zuoye Bang building, surrounded by a bustling cityscape at dusk, with a mix of modern and traditional architecture in the background."
+      ]
+    },
+    {
+      "id": 15,
+      "type": "ShowText|pysssss",
+      "pos": {
+        "0": -208,
+        "1": 726
+      },
+      "size": {
+        "0": 407.8007507324219,
+        "1": 281.5359802246094
+      },
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "link": 18,
+          "widget": {
+            "name": "text"
+          },
+          "label": "文本"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": null,
+          "shape": 6,
+          "label": "字符串"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ShowText|pysssss"
+      },
+      "widgets_values": [
+        "",
+        "一个时尚的女性在作业帮大楼明亮的霓虹灯下悠闲地抽着烟，周围是黄昏时分熙熙攘攘的城市景观，背景中是现代与传统建筑的混合。"
+      ]
+    }
+  ],
+  "links": [
+    [
+      16,
+      18,
+      0,
+      17,
+      0,
+      "STRING"
+    ],
+    [
+      18,
+      19,
+      1,
+      15,
+      0,
+      "STRING"
+    ],
+    [
+      19,
+      17,
+      1,
+      11,
+      0,
+      "STRING"
+    ],
+    [
+      20,
+      11,
+      0,
+      19,
+      0,
+      "STRING"
+    ],
+    [
+      21,
+      17,
+      0,
+      19,
+      1,
+      "STRING"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 1.283902517749503,
+      "offset": [
+        1300.3266559777735,
+        -122.40978131188893
+      ]
+    }
+  },
+  "version": 0.4
+}
