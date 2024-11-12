@@ -10,6 +10,7 @@
 - 支持网络搜索功能
 - 完整的错误处理和日志记录
 ![微信截图_20241108201940](https://github.com/user-attachments/assets/d5111c7a-430f-4fed-80c2-7ab3932a509d)
+![微信截图_20241112132729](https://github.com/user-attachments/assets/ec18da0d-58fa-4cdb-9ffd-fc4647ca8f21)
 
 ## 使用方法
 
