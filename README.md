@@ -2,6 +2,12 @@
 
 这是一个用于 ComfyUI 的自定义节点,集成了 Moonshot AI 的 KIMI 大语言模型。通过这个节点,你可以在 ComfyUI 工作流中直接与 KIMI AI 进行对话交互。
 
+## 更新日志
+1.春节后的版本支持多模态图像推理了，需要选择vision版本的模型；
+2.此外，现在支持模型切换功能了
+![微信截图_20250205164124](https://github.com/user-attachments/assets/dc4971a5-6e6c-49cc-afba-95ac485a3bb7)
+
+
 ## 功能特点
 
 - 支持与 KIMI AI 进行自然语言对话
