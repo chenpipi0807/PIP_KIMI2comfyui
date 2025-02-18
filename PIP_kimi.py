@@ -21,11 +21,12 @@ class PIPKimi:
             "optional": {
                 "additional_input": ("STRING", {"multiline": True, "default": ""}),
                 "model_name": (["moonshot-v1-8k",
-                               "moonshot-v1-32k",
-                               "moonshot-v1-128k",
-                               "moonshot-v1-8k-vision-preview",
-                               "moonshot-v1-32k-vision-preview",
-                               "moonshot-v1-128k-vision-preview"], {"default": "moonshot-v1-128k-vision-preview"}),
+                "moonshot-v1-32k",
+                "moonshot-v1-128k",
+                "moonshot-v1-8k-vision-preview",
+                "moonshot-v1-32k-vision-preview",
+                "moonshot-v1-128k-vision-preview",
+                "kimi-latest"], {"default": "kimi-latest"}),
                 "image_input": ("IMAGE",),
             },
         }
@@ -67,9 +68,9 @@ class PIPKimi:
 
         # Handle image input
         if image_input is not None:
-            if not model_name.endswith("-vision-preview"):
-                logger.warning(f"Model {model_name} does not support image processing. Switching to 'moonshot-v1-128k-vision-preview'")
-                model_name = "moonshot-v1-128k-vision-preview"
+            if not (model_name.endswith("-vision-preview") or model_name.startswith("kimi-latest")):
+                logger.warning(f"Model {model_name} does not support image processing. Switching to 'kimi-latest'")
+                model_name = "kimi-latest"
 
             try:
                 pil_image = self.tensor_to_image(image_input)
