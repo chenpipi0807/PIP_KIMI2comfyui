@@ -1,0 +1,605 @@
+{
+  "last_node_id": 425,
+  "last_link_id": 287,
+  "nodes": [
+    {
+      "id": 408,
+      "type": "PIP_KIMI_JSON",
+      "pos": [
+        -5329.8203125,
+        132.63706970214844
+      ],
+      "size": [
+        510.7348937988281,
+        640.1932373046875
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image_input",
+          "label": "image_input",
+          "type": "IMAGE",
+          "shape": 7,
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "json_response",
+          "label": "json_response",
+          "type": "STRING",
+          "links": [
+            268,
+            270,
+            274,
+            275,
+            276
+          ],
+          "slot_index": 0
+        },
+        {
+          "name": "history_dialogue",
+          "label": "history_dialogue",
+          "type": "STRING",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PIP_KIMI_JSON",
+        "ttNbgOverride": {
+          "color": "#332922",
+          "bgcolor": "#593930",
+          "groupcolor": "#b06634"
+        }
+      },
+      "widgets_values": [
+        "把这个段子整理成json模式：\n需要有笑点1、笑点2、段子内容、段子梗概。\n",
+        "",
+        "{  \n\"panels\": [  \n{\"type\": \"笑点1\", \"description\": \"对应示例内容\"},   \n{\"type\": \"笑点2\", \"description\": \"对应示例内容\"},  \n{\"type\": \"段子梗概\", \"description\":  \"对应示例内容\"},  \n{\"type\": \"段子内容\", \"description\": \"对应示例内容\"}\n]  \n}  ",
+        "话说这年头，减肥都快成全民运动了。我身边有个朋友，下定决心要减肥，那架势，就跟要去征服珠穆朗玛峰似的。\n他制定了超级严格的计划，每天早上五点准时起床晨跑，那寒风呼呼吹，他跟个勇士一样冲出家门。可跑不到一半，就在路边的早餐摊前缴械投降了。那热气腾腾的包子、油条，仿佛有种魔力，把他那减肥的信念一下子就击得粉碎。他一边往嘴里塞着吃的，一边还念叨着：“吃完这顿，我今天肯定能消耗更多热量。”\n到了晚上，他又开始折腾。在网上买了各种减肥器材，什么呼啦圈、哑铃，弄得家里跟个小健身房似的。刚开始还新鲜，呼啦圈转得挺欢，可没几分钟，就哎哟哎哟地喊累，一屁股坐在沙发上，拿起手机刷起美食视频，看得那叫一个津津有味，嘴里还不忘嘟囔：“我就看看，又不会胖。”\n最搞笑的是，他加入了一个减肥群，天天在里面打卡。看着别人晒的减肥成果，他眼馋得不行，就问人家秘诀。人家说要管住嘴、迈开腿，他还特认真地说：“我都知道，就是做不到啊！” 过了几天，他又在群里发消息，说自己要尝试新的减肥方法，结果没多久就有人问他效果咋样，他回了一句：“别提了，我刚试了一天，就发现这方法不适合我，一饿肚子我就头晕眼花，还是吃点东西补充能量吧。”\n这减肥啊，对他来说，就像是一场永远打不完的仗，每次都雄心勃勃地开始，然后灰溜溜地放弃，不过他的这些减肥趣事，倒成了我们茶余饭后的开心果，给大家带来了不少欢乐。",
+        "moonshot-v1-8k",
+        4096
+      ],
+      "color": "#332922",
+      "bgcolor": "#593930"
+    },
+    {
+      "id": 409,
+      "type": "PIP_KIMI_JSONLOAD",
+      "pos": [
+        -4680,
+        120
+      ],
+      "size": [
+        400,
+        200
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "json_data",
+          "type": "STRING",
+          "widget": {
+            "name": "json_data"
+          },
+          "link": 268
+        }
+      ],
+      "outputs": [
+        {
+          "name": "extracted_value",
+          "label": "extracted_value",
+          "type": "STRING",
+          "links": [
+            269
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PIP_KIMI_JSONLOAD",
+        "ttNbgOverride": {
+          "color": "#332922",
+          "bgcolor": "#593930",
+          "groupcolor": "#b06634"
+        }
+      },
+      "widgets_values": [
+        "",
+        "{panels}{0}{description}"
+      ],
+      "color": "#332922",
+      "bgcolor": "#593930"
+    },
+    {
+      "id": 410,
+      "type": "ShowText|pysssss",
+      "pos": [
+        -4180,
+        120
+      ],
+      "size": [
+        455.8634033203125,
+        121.04354095458984
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "text",
+          "label": "文本",
+          "type": "STRING",
+          "widget": {
+            "name": "text"
+          },
+          "link": 269
+        }
+      ],
+      "outputs": [
+        {
+          "name": "STRING",
+          "label": "字符串",
+          "type": "STRING",
+          "shape": 6,
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ShowText|pysssss",
+        "ttNbgOverride": {
+          "color": "#332922",
+          "bgcolor": "#593930",
+          "groupcolor": "#b06634"
+        }
+      },
+      "widgets_values": [
+        "",
+        "减肥的朋友在寒风中晨跑，却因为路边早餐摊的包子油条而投降，还自我安慰说吃完这顿能消耗更多热量。"
+      ],
+      "color": "#332922",
+      "bgcolor": "#593930"
+    },
+    {
+      "id": 411,
+      "type": "ShowText|pysssss",
+      "pos": [
+        -5341.734375,
+        844.5026245117188
+      ],
+      "size": [
+        555.082763671875,
+        427.07757568359375
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "text",
+          "label": "文本",
+          "type": "STRING",
+          "widget": {
+            "name": "text"
+          },
+          "link": 270
+        }
+      ],
+      "outputs": [
+        {
+          "name": "STRING",
+          "label": "字符串",
+          "type": "STRING",
+          "shape": 6,
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ShowText|pysssss",
+        "ttNbgOverride": {
+          "color": "#332922",
+          "bgcolor": "#593930",
+          "groupcolor": "#b06634"
+        }
+      },
+      "widgets_values": [
+        "",
+        "{\n  \"panels\": [\n    {\n      \"type\": \"笑点1\",\n      \"description\": \"减肥的朋友在寒风中晨跑，却因为路边早餐摊的包子油条而投降，还自我安慰说吃完这顿能消耗更多热量。\"\n    },\n    {\n      \"type\": \"笑点2\",\n      \"description\": \"朋友加入减肥群，天天打卡，看到别人减肥成功眼馋，自己却总是半途而废，最后以饿肚子头晕为由放弃减肥。\"\n    },\n    {\n      \"type\": \"段子梗概\",\n      \"description\": \"一个朋友下定决心减肥，制定了严格计划，但总是被美食诱惑，半途而废，他的减肥趣事成了大家的开心果。\"\n    },\n    {\n      \"type\": \"段子内容\",\n      \"description\": \"话说这年头，减肥都快成全民运动了。我身边有个朋友，下定决心要减肥，那架势，就跟要去征服珠穆朗玛峰似的。他制定了超级严格的计划，每天早上五点准时起床晨跑，那寒风呼呼吹，他跟个勇士一样冲出家门。可跑不到一半，就在路边的早餐摊前缴械投降了。那热气腾腾的包子、油条，仿佛有种魔力，把他那减肥的信念一下子就击得粉碎。他一边往嘴里塞着吃的，一边还念叨着：“吃完这顿，我今天肯定能消耗更多热量。”到了晚上，他又开始折腾。在网上买了各种减肥器材，什么呼啦圈、哑铃，弄得家里跟个小健身房似的。刚开始还新鲜，呼啦圈转得挺欢，可没几分钟，就哎哟哎哟地喊累，一屁股坐在沙发上，拿起手机刷起美食视频，看得那叫一个津津有味，嘴里还不忘嘟囔：“我就看看，又不会胖。”最搞笑的是，他加入了一个减肥群，天天在里面打卡。看着别人晒的减肥成果，他眼馋得不行，就问人家秘诀。人家说要管住嘴、迈开腿，他还特认真地说：“我都知道，就是做不到啊！” 过了几天，他又在群里发消息，说自己要尝试新的减肥方法，结果没多久就有人问他效果咋样，他回了一句：“别提了，我刚试了一天，就发现这方法不适合我，一饿肚子我就头晕眼花，还是吃点东西补充能量吧。”这减肥啊，对他来说，就像是一场永远打不完的仗，每次都雄心勃勃地开始，然后灰溜溜地放弃，不过他的这些减肥趣事，倒成了我们茶余饭后的开心果，给大家带来了不少欢乐。\"\n    }\n  ]\n}"
+      ],
+      "color": "#332922",
+      "bgcolor": "#593930"
+    },
+    {
+      "id": 413,
+      "type": "PIP_KIMI_JSONLOAD",
+      "pos": [
+        -4690,
+        380
+      ],
+      "size": [
+        400,
+        200
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "json_data",
+          "type": "STRING",
+          "widget": {
+            "name": "json_data"
+          },
+          "link": 274
+        }
+      ],
+      "outputs": [
+        {
+          "name": "extracted_value",
+          "label": "extracted_value",
+          "type": "STRING",
+          "links": [
+            279
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PIP_KIMI_JSONLOAD",
+        "ttNbgOverride": {
+          "color": "#332922",
+          "bgcolor": "#593930",
+          "groupcolor": "#b06634"
+        }
+      },
+      "widgets_values": [
+        "",
+        "{panels}{1}{description}"
+      ],
+      "color": "#332922",
+      "bgcolor": "#593930"
+    },
+    {
+      "id": 414,
+      "type": "PIP_KIMI_JSONLOAD",
+      "pos": [
+        -4690,
+        650
+      ],
+      "size": [
+        400,
+        200
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "json_data",
+          "type": "STRING",
+          "widget": {
+            "name": "json_data"
+          },
+          "link": 275
+        }
+      ],
+      "outputs": [
+        {
+          "name": "extracted_value",
+          "label": "extracted_value",
+          "type": "STRING",
+          "links": [
+            280
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PIP_KIMI_JSONLOAD",
+        "ttNbgOverride": {
+          "color": "#332922",
+          "bgcolor": "#593930",
+          "groupcolor": "#b06634"
+        }
+      },
+      "widgets_values": [
+        "",
+        "{panels}{2}{description}"
+      ],
+      "color": "#332922",
+      "bgcolor": "#593930"
+    },
+    {
+      "id": 415,
+      "type": "PIP_KIMI_JSONLOAD",
+      "pos": [
+        -4690,
+        920
+      ],
+      "size": [
+        400,
+        200
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "json_data",
+          "type": "STRING",
+          "widget": {
+            "name": "json_data"
+          },
+          "link": 276
+        }
+      ],
+      "outputs": [
+        {
+          "name": "extracted_value",
+          "label": "extracted_value",
+          "type": "STRING",
+          "links": [
+            281
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PIP_KIMI_JSONLOAD",
+        "ttNbgOverride": {
+          "color": "#332922",
+          "bgcolor": "#593930",
+          "groupcolor": "#b06634"
+        }
+      },
+      "widgets_values": [
+        "",
+        "{panels}{3}{description}"
+      ],
+      "color": "#332922",
+      "bgcolor": "#593930"
+    },
+    {
+      "id": 418,
+      "type": "ShowText|pysssss",
+      "pos": [
+        -4182.92724609375,
+        384.6308898925781
+      ],
+      "size": [
+        455.8634033203125,
+        121.04354095458984
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "text",
+          "label": "文本",
+          "type": "STRING",
+          "widget": {
+            "name": "text"
+          },
+          "link": 279
+        }
+      ],
+      "outputs": [
+        {
+          "name": "STRING",
+          "label": "字符串",
+          "type": "STRING",
+          "shape": 6,
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ShowText|pysssss",
+        "ttNbgOverride": {
+          "color": "#332922",
+          "bgcolor": "#593930",
+          "groupcolor": "#b06634"
+        }
+      },
+      "widgets_values": [
+        "",
+        "朋友加入减肥群，天天打卡，看到别人减肥成功眼馋，自己却总是半途而废，最后以饿肚子头晕为由放弃减肥。"
+      ],
+      "color": "#332922",
+      "bgcolor": "#593930"
+    },
+    {
+      "id": 419,
+      "type": "ShowText|pysssss",
+      "pos": [
+        -4180.90087890625,
+        650.252685546875
+      ],
+      "size": [
+        455.8634033203125,
+        121.04354095458984
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "text",
+          "label": "文本",
+          "type": "STRING",
+          "widget": {
+            "name": "text"
+          },
+          "link": 280
+        }
+      ],
+      "outputs": [
+        {
+          "name": "STRING",
+          "label": "字符串",
+          "type": "STRING",
+          "shape": 6,
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ShowText|pysssss",
+        "ttNbgOverride": {
+          "color": "#332922",
+          "bgcolor": "#593930",
+          "groupcolor": "#b06634"
+        }
+      },
+      "widgets_values": [
+        "",
+        "一个朋友下定决心减肥，制定了严格计划，但总是被美食诱惑，半途而废，他的减肥趣事成了大家的开心果。"
+      ],
+      "color": "#332922",
+      "bgcolor": "#593930"
+    },
+    {
+      "id": 420,
+      "type": "ShowText|pysssss",
+      "pos": [
+        -4171.9365234375,
+        926.7750244140625
+      ],
+      "size": [
+        455.8634033203125,
+        121.04354095458984
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "text",
+          "label": "文本",
+          "type": "STRING",
+          "widget": {
+            "name": "text"
+          },
+          "link": 281
+        }
+      ],
+      "outputs": [
+        {
+          "name": "STRING",
+          "label": "字符串",
+          "type": "STRING",
+          "shape": 6,
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ShowText|pysssss",
+        "ttNbgOverride": {
+          "color": "#332922",
+          "bgcolor": "#593930",
+          "groupcolor": "#b06634"
+        }
+      },
+      "widgets_values": [
+        "",
+        "话说这年头，减肥都快成全民运动了。我身边有个朋友，下定决心要减肥，那架势，就跟要去征服珠穆朗玛峰似的。他制定了超级严格的计划，每天早上五点准时起床晨跑，那寒风呼呼吹，他跟个勇士一样冲出家门。可跑不到一半，就在路边的早餐摊前缴械投降了。那热气腾腾的包子、油条，仿佛有种魔力，把他那减肥的信念一下子就击得粉碎。他一边往嘴里塞着吃的，一边还念叨着：“吃完这顿，我今天肯定能消耗更多热量。”到了晚上，他又开始折腾。在网上买了各种减肥器材，什么呼啦圈、哑铃，弄得家里跟个小健身房似的。刚开始还新鲜，呼啦圈转得挺欢，可没几分钟，就哎哟哎哟地喊累，一屁股坐在沙发上，拿起手机刷起美食视频，看得那叫一个津津有味，嘴里还不忘嘟囔：“我就看看，又不会胖。”最搞笑的是，他加入了一个减肥群，天天在里面打卡。看着别人晒的减肥成果，他眼馋得不行，就问人家秘诀。人家说要管住嘴、迈开腿，他还特认真地说：“我都知道，就是做不到啊！” 过了几天，他又在群里发消息，说自己要尝试新的减肥方法，结果没多久就有人问他效果咋样，他回了一句：“别提了，我刚试了一天，就发现这方法不适合我，一饿肚子我就头晕眼花，还是吃点东西补充能量吧。”这减肥啊，对他来说，就像是一场永远打不完的仗，每次都雄心勃勃地开始，然后灰溜溜地放弃，不过他的这些减肥趣事，倒成了我们茶余饭后的开心果，给大家带来了不少欢乐。"
+      ],
+      "color": "#332922",
+      "bgcolor": "#593930"
+    }
+  ],
+  "links": [
+    [
+      268,
+      408,
+      0,
+      409,
+      0,
+      "STRING"
+    ],
+    [
+      269,
+      409,
+      0,
+      410,
+      0,
+      "STRING"
+    ],
+    [
+      270,
+      408,
+      0,
+      411,
+      0,
+      "STRING"
+    ],
+    [
+      274,
+      408,
+      0,
+      413,
+      0,
+      "STRING"
+    ],
+    [
+      275,
+      408,
+      0,
+      414,
+      0,
+      "STRING"
+    ],
+    [
+      276,
+      408,
+      0,
+      415,
+      0,
+      "STRING"
+    ],
+    [
+      279,
+      413,
+      0,
+      418,
+      0,
+      "STRING"
+    ],
+    [
+      280,
+      414,
+      0,
+      419,
+      0,
+      "STRING"
+    ],
+    [
+      281,
+      415,
+      0,
+      420,
+      0,
+      "STRING"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.8954302432552501,
+      "offset": {
+        "0": 5467.5703125,
+        "1": -48.504478454589844
+      }
+    },
+    "ue_links": [],
+    "VHS_latentpreview": false,
+    "VHS_latentpreviewrate": 0,
+    "VHS_MetadataImage": true,
+    "VHS_KeepIntermediate": true
+  },
+  "version": 0.4
+}
