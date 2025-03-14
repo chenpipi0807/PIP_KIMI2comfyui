@@ -1,0 +1,15 @@
+[project]
+name = "comfyui_pip_kimi"
+description = "A ComfyUI custom node that integrates KIMI LLM capabilities into ComfyUI workflows, enabling AI-assisted prompt generation and text processing."
+version = "1.0.0"
+license = {text = "MIT"}
+dependencies = ["requests", "pandas"]
+
+[project.urls]
+Repository = "https://github.com/chenpipi0807/PIP_KIMI2comfyui"
+#  Used by Comfy Registry https://comfyregistry.org
+
+[tool.comfy]
+PublisherId = ""
+DisplayName = "PIP KIMI Integration"
+Icon = ""
