@@ -29,6 +29,7 @@ class PIPKimi:
                 "moonshot-v1-128k-vision-preview",
                 "kimi-latest"], {"default": "kimi-latest"}),
                 "image_input": ("IMAGE",),
+                "max_tokens": ("INT", {"default": 4096, "min": 1, "max": 128000}),
             },
         }
 
@@ -47,7 +48,7 @@ class PIPKimi:
         image = image.numpy().astype('uint8')
         return Image.fromarray(image)
 
-    def call_kimi(self, default_question="", additional_input="", history_dialogue="", model_name="moonshot-v1-128k-vision-preview", image_input=None):
+    def call_kimi(self, default_question="", additional_input="", history_dialogue="", model_name="moonshot-v1-128k-vision-preview", image_input=None, max_tokens=4096):
         try:
             with open(os.path.join(os.path.dirname(__file__), 'key.txt'), 'r') as file:
                 api_key = file.read().strip()
@@ -111,7 +112,8 @@ class PIPKimi:
             "web_search": True,
             "top_p": 0.95,
             "presence_penalty": 0.6,
-            "stream": False
+            "stream": False,
+            "max_tokens": max_tokens
         }
 
         try:
