@@ -24,12 +24,22 @@ class PIPKimi:
                 "model_name": (["moonshot-v1-8k",
                 "moonshot-v1-32k",
                 "moonshot-v1-128k",
+                "moonshot-v1-auto",
                 "moonshot-v1-8k-vision-preview",
                 "moonshot-v1-32k-vision-preview",
                 "moonshot-v1-128k-vision-preview",
-                "kimi-latest"], {"default": "kimi-latest"}),
+                "moonshot-v1-vision-preview",
+                "kimi-latest",
+                "kimi-latest-8k",
+                "kimi-latest-32k", 
+                "kimi-latest-128k",
+                "kimi-k2-0711-preview",
+                "kimi-thinking-preview",
+                ], {"default": "moonshot-v1-auto"}),
                 "image_input": ("IMAGE",),
                 "max_tokens": ("INT", {"default": 4096, "min": 1, "max": 128000}),
+
+                "temperature": ("FLOAT", {"default": 0.7, "min": 0.0, "max": 2.0, "step": 0.1}),
             },
         }
 
@@ -48,7 +58,7 @@ class PIPKimi:
         image = image.numpy().astype('uint8')
         return Image.fromarray(image)
 
-    def call_kimi(self, default_question="", additional_input="", history_dialogue="", model_name="moonshot-v1-128k-vision-preview", image_input=None, max_tokens=4096):
+    def call_kimi(self, default_question="", additional_input="", history_dialogue="", model_name="moonshot-v1-auto", image_input=None, max_tokens=4096, temperature=0.7):
         try:
             with open(os.path.join(os.path.dirname(__file__), 'key.txt'), 'r') as file:
                 api_key = file.read().strip()
@@ -59,6 +69,7 @@ class PIPKimi:
             logger.error(f"Failed to read key.txt: {str(e)}")
             return (f"请求错误: {str(e)}", f"请求错误: {str(e)}")
 
+        # 使用 Moonshot API 端点，支持 Kimi 模型和 tool_calls 功能
         api_url = "https://api.moonshot.cn/v1/chat/completions"
         headers = {
             "Authorization": f"Bearer {api_key}",
@@ -70,9 +81,13 @@ class PIPKimi:
 
         # Handle image input
         if image_input is not None:
-            if not (model_name.endswith("-vision-preview") or model_name.startswith("kimi-latest")):
-                logger.warning(f"Model {model_name} does not support image processing. Switching to 'kimi-latest'")
-                model_name = "kimi-latest"
+            vision_models = ["moonshot-v1-8k-vision-preview", "moonshot-v1-32k-vision-preview", 
+                           "moonshot-v1-128k-vision-preview", "moonshot-v1-vision-preview", 
+                           "kimi-latest", "kimi-latest-8k", "kimi-latest-32k", "kimi-latest-128k",
+                           "kimi-thinking-preview"]
+            if model_name not in vision_models:
+                logger.warning(f"Model {model_name} does not support image processing. Switching to 'moonshot-v1-vision-preview'")
+                model_name = "moonshot-v1-vision-preview"
 
             try:
                 pil_image = self.tensor_to_image(image_input)
@@ -105,20 +120,33 @@ class PIPKimi:
         else:
             messages.append({"role": "user", "content": question})
 
+
+
         data = {
             "model": model_name,
             "messages": messages,
-            "temperature": 0.7,
-            "web_search": True,
+            "temperature": temperature,
             "top_p": 0.95,
             "presence_penalty": 0.6,
             "stream": False,
             "max_tokens": max_tokens
         }
+        
+
 
         try:
             logger.debug(f"Making API request to {api_url}...")
+            logger.debug(f"Request headers: {headers}")
+            logger.debug(f"Request data keys: {list(data.keys())}")
+            logger.debug(f"Model: {data.get('model')}, Messages count: {len(data.get('messages', []))}")
+            
             response = req.post(api_url, headers=headers, json=data, timeout=120)
+            logger.debug(f"Response status code: {response.status_code}")
+            
+            if response.status_code == 404:
+                logger.error(f"404 Not Found error. Response content: {response.text}")
+                return (f"API端点错误 (404): {api_url} 不存在或无法访问。响应内容: {response.text[:200]}", f"API端点错误 (404): {api_url} 不存在或无法访问")
+            
             response.raise_for_status()
             response_data = response.json()
 
@@ -153,12 +181,22 @@ class PIPKimiJSON:
                 "model_name": (["moonshot-v1-8k",
                 "moonshot-v1-32k",
                 "moonshot-v1-128k",
+                "moonshot-v1-auto",
                 "moonshot-v1-8k-vision-preview",
                 "moonshot-v1-32k-vision-preview",
                 "moonshot-v1-128k-vision-preview",
-                "kimi-latest"], {"default": "kimi-latest"}),
+                "moonshot-v1-vision-preview",
+                "kimi-latest",
+                "kimi-latest-8k",
+                "kimi-latest-32k", 
+                "kimi-latest-128k",
+                "kimi-k2-0711-preview",
+                "kimi-thinking-preview",
+                ], {"default": "moonshot-v1-auto"}),
                 "image_input": ("IMAGE",),
                 "max_tokens": ("INT", {"default": 4096, "min": 1, "max": 128000}),
+
+                "temperature": ("FLOAT", {"default": 0.7, "min": 0.0, "max": 2.0, "step": 0.1}),
             },
         }
 
@@ -178,7 +216,7 @@ class PIPKimiJSON:
         return Image.fromarray(image)
 
     def call_kimi_json(self, default_question="", json_format="", additional_input="", history_dialogue="", 
-                       model_name="moonshot-v1-128k-vision-preview", image_input=None, max_tokens=4096):
+                       model_name="moonshot-v1-auto", image_input=None, max_tokens=4096, temperature=0.7):
         try:
             with open(os.path.join(os.path.dirname(__file__), 'key.txt'), 'r') as file:
                 api_key = file.read().strip()
@@ -189,6 +227,7 @@ class PIPKimiJSON:
             logger.error(f"Failed to read key.txt: {str(e)}")
             return (f"请求错误: {str(e)}", f"请求错误: {str(e)}")
 
+        # 使用 Moonshot API 端点，支持 Kimi 模型和 tool_calls 功能
         api_url = "https://api.moonshot.cn/v1/chat/completions"
         headers = {
             "Authorization": f"Bearer {api_key}",
@@ -198,7 +237,7 @@ class PIPKimiJSON:
         # Prepare system message to guide JSON format
         system_message = {
             "role": "system", 
-            "content": f"请以JSON格式回答用户的问题，JSON格式如下：\n{json_format}\n请严格按照这个格式输出JSON，不要添加其他文字说明。"
+            "content": f"你必须以纯粹的JSON格式回复，不要包含任何其他文本。JSON格式必须严格遵循以下结构：\n{json_format}\n\n重要规则：\n1. 只返回JSON数据，不要任何解释文字\n2. 不要使用```json```代码块\n3. 确保JSON语法正确\n4. 使用双引号包围键名和字符串值"
         }
 
         question = f"{default_question}\n{additional_input}".strip()
@@ -214,9 +253,13 @@ class PIPKimiJSON:
 
         # Handle image input
         if image_input is not None:
-            if not (model_name.endswith("-vision-preview") or model_name.startswith("kimi-latest")):
-                logger.warning(f"Model {model_name} does not support image processing. Switching to 'kimi-latest'")
-                model_name = "kimi-latest"
+            vision_models = ["moonshot-v1-8k-vision-preview", "moonshot-v1-32k-vision-preview", 
+                           "moonshot-v1-128k-vision-preview", "moonshot-v1-vision-preview", 
+                           "kimi-latest", "kimi-latest-8k", "kimi-latest-32k", "kimi-latest-128k",
+                           "kimi-thinking-preview"]
+            if model_name not in vision_models:
+                logger.warning(f"Model {model_name} does not support image processing. Switching to 'moonshot-v1-vision-preview'")
+                model_name = "moonshot-v1-vision-preview"
 
             try:
                 pil_image = self.tensor_to_image(image_input)
@@ -249,21 +292,33 @@ class PIPKimiJSON:
         else:
             messages.append({"role": "user", "content": question})
 
+
+
         data = {
             "model": model_name,
             "messages": messages,
-            "temperature": 0.7,
-            "web_search": True,
+            "temperature": temperature,
             "top_p": 0.95,
             "presence_penalty": 0.6,
             "stream": False,
-            "max_tokens": max_tokens,
-            "response_format": {"type": "json_object"}
+            "max_tokens": max_tokens
         }
+        
+
 
         try:
             logger.debug(f"Making API request to {api_url} with JSON mode...")
+            logger.debug(f"Request headers: {headers}")
+            logger.debug(f"Request data keys: {list(data.keys())}")
+            logger.debug(f"Model: {data.get('model')}, Messages count: {len(data.get('messages', []))}")
+            
             response = req.post(api_url, headers=headers, json=data, timeout=180)
+            logger.debug(f"Response status code: {response.status_code}")
+            
+            if response.status_code == 404:
+                logger.error(f"404 Not Found error. Response content: {response.text}")
+                return (f"API端点错误 (404): {api_url} 不存在或无法访问。响应内容: {response.text[:200]}", json.dumps(messages))
+            
             response.raise_for_status()
             response_data = response.json()
 
@@ -294,6 +349,9 @@ class PIPKimiJSON:
         except Exception as e:
             logger.error(f"Unexpected Error: {str(e)}")
             return (f"发生未知错误: {str(e)}", json.dumps(messages))
+
+
+
 
 
 class PIPKimiJSONLoad:
